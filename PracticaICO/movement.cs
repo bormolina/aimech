@@ -210,7 +210,7 @@ namespace PracticaICO
                         kindCost = 4;
                     }
                 }
-                //Si es pantano
+                //Si es pantanoso
                 else if (kindNode == 3) {
                     kindCost = 2;
                 }
