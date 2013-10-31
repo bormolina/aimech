@@ -1,4 +1,4 @@
 aimech
 ======
 
-Automatic mech player for the game BattleTech.
+Automatic mech player for the game BattleTech.!
