@@ -123,18 +123,18 @@ namespace PracticaICO
             }
             return -2;
         }
-        /*
-        public static void printList(List<string> l) {
+        
+        public static void printList(List<string> l, string info) {
             if (l.Count == 0) {
-                Console.Out.WriteLine("la lista ta vacia");
+                Console.Out.WriteLine("la lista esta vacia");
             }
-            Console.Out.WriteLine("#############");
+            Console.Out.WriteLine("("+info+")");
             foreach (string item in l) {
                 Console.Out.WriteLine(item);
             }
             Console.Out.WriteLine("#############");
         }
-
+        /*
         public static void printArrayString(string[] a) {
             for (int i = 0; i < a.Length; i++) {
                 Console.Out.WriteLine(a[i]);

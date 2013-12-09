@@ -201,10 +201,10 @@ namespace PracticaICO
                 else if (kindNode == 2) {
                     int elevation = this.world.land.nodes[start].nivel;
                     if (elevation > -1) {
-                        kindCost = 1;
+                        kindCost = 2;
                     }
                     else if (elevation == -1) {
-                        kindCost = 2;
+                        kindCost = 3;
                     }
                     else if (elevation < -1) {
                         kindCost = 4;
@@ -755,8 +755,17 @@ namespace PracticaICO
             //es decir un formato intermedio entre el usado para representar internamente el camino
             //y el requerido por el fichero accionJx.sbt
             System.IO.StreamWriter actionFile = new System.IO.StreamWriter(file);
-            if (this.world.myMech.stacked == true || this.myHeat >9 || !this.world.myMech.IHaveLegs()) {
+            if (this.world.myMech.stacked == true || this.myHeat > 9 || !this.world.myMech.IHaveLegs() || (this.world.myMech.onGround == true && this.world.myMech.walk<=2))
+            {
                 actionFile.WriteLine(this.allowedMovements[0]);
+                actionFile.Close();
+                return;
+            }
+            //Si no tenemos alguna de las piernas decidimos no andar
+            if (this.world.myMech.IHaveLegs() == false) {
+                actionFile.WriteLine(this.allowedMovements[0]);
+                actionFile.Close();
+                return;
             }
             //Si estamos en el suelo nos intentamos levantar
             if (this.world.myMech.onGround == true)

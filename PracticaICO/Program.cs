@@ -53,7 +53,7 @@ namespace PracticaICO{
 
             else {
                 //Test.printMechs(theWorld);
-                Test.testAngles(theWorld);
+                Test.testNeigs(theWorld);
             }
         }
     }

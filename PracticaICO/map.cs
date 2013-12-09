@@ -129,26 +129,72 @@ namespace PracticaICO
             else{
                 if(x%2==0){
                     if(side==2){
+                        x++;
+
                     }
                     if(side==3){
+                        x++;
+                        y++;
                     }
                     if(side==5){
+                        x--;
+                        y++;
                     }
                     if(side==6){
+                        x--;
+
                     }
                 }
                 else{
                     if(side==2){
+                        x++;
+                        y--;
                     }
                     if(side==3){
+                        x++;
                     }
                     if(side==5){
+                        x--;
                     }
                     if(side==6){
+                        x--;
+                        y--;
                     }
                 }
             }
+            if (x <= 0 || y <= 0 || x > this.width || y > this.height) {
+                return utilities.numbersToCoordinates(0, 0);
+            }
             return utilities.numbersToCoordinates(x,y);
+        }
+
+        public List<string> frontNeigs(string node, int side) {
+            int side1 = side - 1;
+            int side2 = (side1 + 1) % 6;
+            int side3 = -1;
+            if (side1 - 1 == -1)
+            {
+                side3 = 5;
+            }
+            else {
+                side3 = (side1 - 1) % 6;
+            }
+            List<string> theFrontNeigs = new List<string>();
+            string neig1 = this.neig(node, side1+1);
+            string neig2 = this.neig(node, side2+1);
+            string neig3 = this.neig(node, side3+1);
+            if (String.Compare(neig3, "0000") != 0)
+            {
+                theFrontNeigs.Add(neig3);
+            }
+            if (String.Compare(neig1, "0000") != 0) {
+                theFrontNeigs.Add(neig1);
+            }
+            if (String.Compare(neig2, "0000") != 0)
+            {
+                theFrontNeigs.Add(neig2);
+            }
+            return theFrontNeigs;
         }
 
         /**
@@ -197,6 +243,25 @@ namespace PracticaICO
                 }
             }
             return canGo;
+        }
+
+        public List<string> isInFrontAngle(string start, int side) {
+            List<string> abiertos = new List<string>();
+            List<string> solucion = new List<string>();
+            abiertos.Add(start);
+            while(abiertos.Count>0){
+                List<string> candidatos = new List<string>();
+                foreach (string item in abiertos.ToArray()) {
+                    foreach (string item2 in this.frontNeigs(item, side)) {
+                        if (!solucion.Contains(item2)) {
+                            solucion.Add(item2);
+                            candidatos.Add(item2);
+                        }
+                    }
+                }
+                abiertos = candidatos;
+            }
+            return solucion;
         }
 
         /**
