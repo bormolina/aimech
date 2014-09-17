@@ -7,7 +7,7 @@ using System.IO;
 namespace PracticaICO
 {
     /**
-     * Clase de utilidades, funciones que necesito a lo largo de la práctica
+     * Clase de utilidades
      * */
     class utilities
     {
